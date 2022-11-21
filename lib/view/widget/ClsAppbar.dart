@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 
-class ClsAppBar extends AppBar {
-  ClsAppBar({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class ClsAppbar extends AppBar {
+  String prmTitulo;
+  ClsAppbar({Key? key, required this.prmTitulo}) : super(key: key);
+
   @override
-  State<ClsAppBar> createState() => _ClsAppBarState();
+  State<ClsAppbar> createState() => _ClsAppbarState(prmTitulo: prmTitulo);
 }
 
-class _ClsAppBarState extends State<ClsAppBar> {
-  /// @brief AppBar personalizado para vizualizar en multiples ventanas
+class _ClsAppbarState extends State<ClsAppbar> {
+  String prmTitulo;
+  _ClsAppbarState({required this.prmTitulo});
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 5,
-      flexibleSpace: const Center(
+      flexibleSpace: Center(
           child: Text(
-        "Inicio",
-        style: TextStyle(
+        prmTitulo,
+        style: const TextStyle(
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
       )),
       centerTitle: false,

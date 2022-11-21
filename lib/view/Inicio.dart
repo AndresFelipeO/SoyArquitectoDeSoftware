@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:soy_arquitecto/view/Edicion.dart';
 import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
+import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
+import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
 import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
@@ -29,7 +32,9 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ClsAppBar(),
+      appBar: ClsAppbar(
+        prmTitulo: "Inicio",
+      ),
       drawer: const ClsDrawer(),
       body: body(),
     );
@@ -41,7 +46,7 @@ class _InicioState extends State<Inicio> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        accesoRapido(),
+        AccesoRapido(),
         const VerticalDivider(),
         contenido(),
         const VerticalDivider(),
@@ -68,60 +73,54 @@ class _InicioState extends State<Inicio> {
           margin: const EdgeInsets.only(top: 10, left: 5),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.deepPurple[200],
-                maxRadius: 30,
-                child: const Text(
-                  "A",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              ClsAvatar(),
               Container(
-                margin: const EdgeInsets.only(top: 0, left: 30),
-                height: 100,
-                width: 490,
-                child: const TextField(
-                  textCapitalization: TextCapitalization.sentences,
-                  maxLines: 10,
-                  decoration:
-                      InputDecoration(labelText: "Agregar una publicación"),
-                ),
-              )
+                  margin: const EdgeInsets.only(top: 0, left: 30),
+                  height: 100,
+                  width: 490,
+                  child: InkWell(
+                    child: TextField(
+                      enabled: false,
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Edicion()));
+                      },
+                      textCapitalization: TextCapitalization.sentences,
+                      maxLines: 10,
+                      decoration: const InputDecoration(
+                          labelText: "Agregar una publicación"),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Edicion()));
+                    },
+                  ))
             ],
           ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Padding(padding: EdgeInsets.only(left: 90)),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.image_rounded,
-                  ),
-                  iconSize: 35,
+        Container(
+          margin: const EdgeInsets.only(top: 10, left: 35),
+          // height: 2,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Edicion()));
+                },
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.black),
                 ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.video_camera_back_rounded),
-                    iconSize: 35),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.settings_applications_sharp),
-                    iconSize: 35),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("Publicar"),
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              ),
-            )
-          ],
+                child: const Text("Publicar"),
+              )
+            ],
+          ),
         ),
         const Divider()
       ],
@@ -175,26 +174,5 @@ class _InicioState extends State<Inicio> {
         Divider()
       ],
     ));
-  }
-
-  /// @brief Contiene la interfaz grafica del acceso rapido
-  Widget accesoRapido() {
-    return Column(
-      children: [
-        InkWell(
-          child: Row(children: const [
-            Icon(
-              Icons.home,
-              size: 40,
-            ),
-            Text(
-              "Inicio",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-            )
-          ]),
-          onTap: () {},
-        ),
-      ],
-    );
   }
 }
