@@ -5,9 +5,9 @@ import '../controller/UsuarioSuscrito.dart';
 
 class Datos {
   List<UsuarioSuscrito> usuariosPrueba = [
-    UsuarioSuscrito(),
-    UsuarioSuscrito(),
-    UsuarioSuscrito(),
+    UsuarioSuscrito("Daniela"),
+    UsuarioSuscrito("Ano"),
+    UsuarioSuscrito("Santi"),
   ];
   Datos() {
     quemarDatos();

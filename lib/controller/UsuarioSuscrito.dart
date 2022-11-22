@@ -5,7 +5,7 @@ import 'Usuario.dart';
 
 class UsuarioSuscrito extends Usuario {
   List<Capsulas> misCapsulas = [];
-
+  UsuarioSuscrito(super.nombre);
   void agregarCapsula(Capsulas prmCapsulas) {
     misCapsulas.add(prmCapsulas);
   }

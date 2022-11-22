@@ -34,8 +34,8 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            const Text(
-              "  Linus Tolvar",
+            Text(
+              usuario.nombre,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
