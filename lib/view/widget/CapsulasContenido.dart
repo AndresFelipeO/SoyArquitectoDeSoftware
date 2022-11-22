@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/controller/Usuario.dart';
 import 'package:soy_arquitecto/controller/UsuarioSuscrito.dart';
+import 'package:soy_arquitecto/view/IntComentario.dart';
+
+import '../../model/Datos.dart';
 
 class CapsulasContenido extends StatefulWidget {
   UsuarioSuscrito usuario;
+  UsuarioSuscrito usuerLogin;
   int index;
-  CapsulasContenido({Key? key, required this.usuario, required this.index})
+  CapsulasContenido(
+      {Key? key,
+      required this.usuario,
+      required this.usuerLogin,
+      required this.index})
       : super(key: key);
 
   @override
-  State<CapsulasContenido> createState() =>
-      _CapsulasContenidoState(usuario: usuario, index: index);
+  State<CapsulasContenido> createState() => _CapsulasContenidoState(
+      usuario: usuario, index: index, usuerLogin: usuerLogin);
 }
 
 class _CapsulasContenidoState extends State<CapsulasContenido> {
+  Datos datos = Datos();
+  UsuarioSuscrito usuerLogin;
   UsuarioSuscrito usuario;
   int index;
-  _CapsulasContenidoState({required this.usuario, required this.index});
+  _CapsulasContenidoState(
+      {required this.usuario, required this.index, required this.usuerLogin});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +47,7 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
             ),
             Text(
               usuario.nombre,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -60,7 +71,17 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
         Row(
           children: [
             IconButton(
-                onPressed: () {}, icon: const Icon(Icons.message_rounded)),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => IntComentario(
+                                userCapsula: usuario,
+                                userLogin: usuerLogin,
+                                index: index,
+                              )));
+                },
+                icon: const Icon(Icons.message_rounded)),
             const Text("40")
           ],
         ),

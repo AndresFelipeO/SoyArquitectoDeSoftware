@@ -67,6 +67,7 @@ class _PerfilState extends State<Perfil> {
                 child: ListView.builder(
               itemCount: usuario.misCapsulas.length,
               itemBuilder: (context, index) => CapsulasContenido(
+                usuerLogin: usuario,
                 usuario: usuario,
                 index: index,
               ),

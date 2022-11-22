@@ -151,6 +151,7 @@ class _InicioState extends State<Inicio> {
         child: ListView.builder(
       itemCount: datos.usuariosPrueba.length,
       itemBuilder: ((context, index) => CapsulasContenido(
+            usuerLogin: usuario,
             usuario: datos.usuariosPrueba[index],
             index:
                 random.nextInt(datos.usuariosPrueba[index].misCapsulas.length),
