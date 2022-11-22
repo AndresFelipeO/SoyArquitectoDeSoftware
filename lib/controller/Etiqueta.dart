@@ -1,5 +1,5 @@
 class Etiqueta {
-  String titulo;
+  String nombre;
 
-  Etiqueta(this.titulo);
+  Etiqueta(this.nombre);
 }

@@ -5,11 +5,12 @@ import 'Etiqueta.dart';
 
 abstract class Capsulas {
   String titulo;
+  String cuerpo;
   List<Comentario> misComentarios = [];
-  late List<Etiqueta> misEtiquetas = [];
+  List<Etiqueta> misEtiquetas = [];
 
   ///@brief Constructor
-  Capsulas(this.titulo);
+  Capsulas(this.titulo, this.cuerpo);
   //CRUD
   void publicar(UsuarioSuscrito user);
   void eliminar();

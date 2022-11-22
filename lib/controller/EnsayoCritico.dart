@@ -4,13 +4,11 @@ import 'Comentario.dart';
 import 'Etiqueta.dart';
 
 class EnsayoCritico extends Capsulas {
-  String parrafo;
-
   ///@brief Contructor parametrizado
   ///@param titulo, titulo del ensayo critico
   ///@param parrafo, parrafo del ensayo critico
 
-  EnsayoCritico(super.titulo, this.parrafo);
+  EnsayoCritico(super.titulo, super.parrafo);
 
   @override
   void publicar(UsuarioSuscrito user) {
@@ -31,11 +29,12 @@ class EnsayoCritico extends Capsulas {
     // ignore: todo
     //TODO
   }
-  
+
   @override
   void agregarEtiqueta(Etiqueta prmEtiqueta) {
     misEtiquetas.add(prmEtiqueta);
   }
+
   @override
   void agregarComentario(Comentario prmComentario) {
     misComentarios.add(prmComentario);

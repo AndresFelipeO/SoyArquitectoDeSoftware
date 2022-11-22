@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/controller/Capsulas.dart';
 import 'package:soy_arquitecto/controller/EnsayoCritico.dart';
+import 'package:soy_arquitecto/controller/Etiqueta.dart';
 import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
 import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
 import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
@@ -9,6 +10,7 @@ import 'package:desktop_window/desktop_window.dart';
 
 import '../controller/Usuario.dart';
 import '../controller/UsuarioSuscrito.dart';
+import 'Inicio.dart';
 
 class Edicion extends StatefulWidget {
   UsuarioSuscrito usuario;
@@ -21,6 +23,7 @@ class Edicion extends StatefulWidget {
 class _EdicionState extends State<Edicion> {
   final controlleTitulo = TextEditingController();
   final controlleCuerpo = TextEditingController();
+  final controlleEtiqueta = TextEditingController();
   UsuarioSuscrito usuario;
   _EdicionState({required this.usuario});
   @override
@@ -49,7 +52,9 @@ class _EdicionState extends State<Edicion> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AccesoRapido(),
+          AccesoRapido(
+            usuario: usuario,
+          ),
           const VerticalDivider(),
           edicionContenido(),
           const VerticalDivider(),
@@ -70,14 +75,19 @@ class _EdicionState extends State<Edicion> {
                   children: [
                     IconButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Inicio(
+                                        usuario: usuario,
+                                      )));
                         },
                         icon: const Icon(Icons.arrow_back)),
                     const ClsAvatar(),
                   ],
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 60,
                   child: TextField(
                     controller: controlleTitulo,
                     onTap: () {},
@@ -87,13 +97,32 @@ class _EdicionState extends State<Edicion> {
                         labelText: "Titulo de la publicación"),
                   ),
                 ),
-                TextField(
-                  controller: controlleCuerpo,
-                  onTap: () {},
-                  textCapitalization: TextCapitalization.sentences,
-                  maxLines: 10,
-                  decoration: const InputDecoration(
-                    labelText: "Que deseas compartir",
+                Card(
+                  elevation: 5,
+                  margin: const EdgeInsets.only(
+                    top: 15,
+                    bottom: 15,
+                  ),
+                  child: TextField(
+                    controller: controlleCuerpo,
+                    onTap: () {},
+                    textCapitalization: TextCapitalization.sentences,
+                    maxLines: 15,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(borderSide: BorderSide.none),
+                      labelText: "Que deseas compartir",
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 60,
+                  child: TextField(
+                    controller: controlleEtiqueta,
+                    onTap: () {},
+                    textCapitalization: TextCapitalization.sentences,
+                    maxLines: 10,
+                    decoration:
+                        const InputDecoration(labelText: "Agregar Etiquetas #"),
                   ),
                 ),
                 Container(
@@ -107,6 +136,12 @@ class _EdicionState extends State<Edicion> {
                         Capsulas miEnsayo1 = EnsayoCritico(
                             controlleTitulo.text, controlleCuerpo.text);
                         miEnsayo1.publicar(usuario);
+                        //Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text.split("#"));
+                        Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text);
+                        miEnsayo1.agregarEtiqueta(miEtiqueta);
+                        controlleTitulo.text = "";
+                        controlleCuerpo.text = "";
+                        controlleEtiqueta.text = "";
                       });
                     },
                     style: ButtonStyle(
