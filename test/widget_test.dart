@@ -14,7 +14,7 @@ import 'package:soy_arquitecto/view/Inicio.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const Inicio());
+    await tester.pumpWidget(Inicio());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

@@ -6,18 +6,21 @@ import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
 import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
+import '../controller/UsuarioSuscrito.dart';
 
 class Inicio extends StatefulWidget {
-  const Inicio({Key? key}) : super(key: key);
+  UsuarioSuscrito usuario;
+  Inicio({Key? key, required this.usuario}) : super(key: key);
 
   @override
-  State<Inicio> createState() => _InicioState();
+  State<Inicio> createState() => _InicioState(usuario: usuario);
 }
 
 class _InicioState extends State<Inicio> {
   //cambia el color del IconButton
   bool colorFavorito = false;
-
+  UsuarioSuscrito usuario;
+  _InicioState({required this.usuario});
   @override
   void initState() {
     super.initState();
@@ -85,7 +88,9 @@ class _InicioState extends State<Inicio> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Edicion()));
+                                builder: (context) => Edicion(
+                                      usuario: usuario,
+                                    )));
                       },
                       textCapitalization: TextCapitalization.sentences,
                       maxLines: 10,
@@ -96,7 +101,9 @@ class _InicioState extends State<Inicio> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Edicion()));
+                              builder: (context) => Edicion(
+                                    usuario: usuario,
+                                  )));
                     },
                   ))
             ],
@@ -110,8 +117,12 @@ class _InicioState extends State<Inicio> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Edicion()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Edicion(
+                                usuario: usuario,
+                              )));
                 },
                 style: ButtonStyle(
                   backgroundColor:
@@ -155,7 +166,7 @@ class _InicioState extends State<Inicio> {
                 onPressed: () {}, child: const Text("#SistemasOperativos"))
           ],
         ),
-        SelectableText(lorem(paragraphs: 2, words: 60)),
+        SelectableText("a"),
         Row(
           children: [
             IconButton(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:soy_arquitecto/controller/Capsulas.dart';
+import 'package:soy_arquitecto/controller/EnsayoCritico.dart';
 import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
 import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
 import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
@@ -9,16 +11,18 @@ import '../controller/Usuario.dart';
 import '../controller/UsuarioSuscrito.dart';
 
 class Edicion extends StatefulWidget {
-  const Edicion({Key? key}) : super(key: key);
+  UsuarioSuscrito usuario;
+  Edicion({Key? key, required this.usuario}) : super(key: key);
 
   @override
-  State<Edicion> createState() => _EdicionState();
+  State<Edicion> createState() => _EdicionState(usuario: usuario);
 }
 
 class _EdicionState extends State<Edicion> {
   final controlleTitulo = TextEditingController();
   final controlleCuerpo = TextEditingController();
-
+  UsuarioSuscrito usuario;
+  _EdicionState({required this.usuario});
   @override
   void initState() {
     super.initState();
@@ -99,7 +103,11 @@ class _EdicionState extends State<Edicion> {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      setState(() {});
+                      setState(() {
+                        Capsulas miEnsayo1 = EnsayoCritico(
+                            controlleTitulo.text, controlleCuerpo.text);
+                        miEnsayo1.publicar(usuario);
+                      });
                     },
                     style: ButtonStyle(
                       backgroundColor:

@@ -9,4 +9,7 @@ class UsuarioSuscrito extends Usuario {
   void agregarCapsula(Capsulas prmCapsulas) {
     misCapsulas.add(prmCapsulas);
   }
+  /*List<Capsulas> getCapsulas(){
+    return this.misCapsulas;
+  }*/
 }

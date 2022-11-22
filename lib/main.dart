@@ -4,9 +4,10 @@ import 'package:soy_arquitecto/controller/UsuarioSuscrito.dart';
 import 'package:soy_arquitecto/view/Inicio.dart';
 
 void main(List<String> args) {
-  runApp(const MaterialApp(
+  UsuarioSuscrito user1 = UsuarioSuscrito();
+  runApp(MaterialApp(
     title: "Soy Arquitecto",
-    home: Inicio(),
+    home: Inicio(usuario: user1),
     debugShowCheckedModeBanner: false,
   ));
 }
