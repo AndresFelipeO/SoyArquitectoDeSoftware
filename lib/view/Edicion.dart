@@ -7,7 +7,6 @@ import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
 import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
 import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
 import 'package:desktop_window/desktop_window.dart';
-
 import '../controller/Usuario.dart';
 import '../controller/UsuarioSuscrito.dart';
 import 'Inicio.dart';
@@ -32,7 +31,7 @@ class _EdicionState extends State<Edicion> {
     testWindowSize();
   }
 
-  /// @brief metodo asincrono donde se predefine el tamaño minimo de la ventana de la aplicacion
+  /// @brief metodo asincrono donde se predefine el tamaño minimo de la ventana de la aplicacion.
   testWindowSize() async {
     await DesktopWindow.setMinWindowSize(const Size(1280, 720));
   }
