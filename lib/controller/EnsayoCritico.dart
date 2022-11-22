@@ -1,5 +1,7 @@
 import 'Capsulas.dart';
 import 'UsuarioSuscrito.dart';
+import 'Comentario.dart';
+import 'Etiqueta.dart';
 
 class EnsayoCritico extends Capsulas {
   String parrafo;
@@ -17,6 +19,25 @@ class EnsayoCritico extends Capsulas {
 
   @override
   void eliminar() {}
+
   @override
   void modificar() {}
+
+  ///@brief Editar la capsula de conocimiento
+  ///@param
+  ///@param
+  @override
+  void editarCapsula() {
+    // ignore: todo
+    //TODO
+  }
+  
+  @override
+  void agregarEtiqueta(Etiqueta prmEtiqueta) {
+    misEtiquetas.add(prmEtiqueta);
+  }
+  @override
+  void agregarComentario(Comentario prmComentario) {
+    misComentarios.add(prmComentario);
+  }
 }
