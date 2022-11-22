@@ -1,4 +1,6 @@
 class Comentario {
   String contenido;
-  Comentario(this.contenido);
+  String nombreUsuario;
+
+  Comentario(this.nombreUsuario, this.contenido);
 }
