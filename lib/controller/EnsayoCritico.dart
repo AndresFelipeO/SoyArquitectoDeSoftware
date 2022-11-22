@@ -10,7 +10,7 @@ class EnsayoCritico extends Capsulas {
 
   EnsayoCritico(super.titulo, super.parrafo);
 
-  ///@brief Editar la capsula de conocimiento
+  ///@brief Publicar la capsula de conocimiento
   ///@param  user,  usuario suscrito
   @override
   void publicar(UsuarioSuscrito user) {
@@ -26,7 +26,6 @@ class EnsayoCritico extends Capsulas {
   void modificar() {}
 
   ///@brief Editar la capsula de conocimiento
-
   @override
   void editarCapsula() {
     // ignore: todo
