@@ -136,9 +136,13 @@ class _EdicionState extends State<Edicion> {
                         Capsulas miEnsayo1 = EnsayoCritico(
                             controlleTitulo.text, controlleCuerpo.text);
                         miEnsayo1.publicar(usuario);
-                        //Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text.split("#"));
-                        Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text);
-                        miEnsayo1.agregarEtiqueta(miEtiqueta);
+                        List<String> etiquetas =
+                            controlleEtiqueta.text.split("#");
+                        for (int i = 0; i < etiquetas.length; i++) {
+                          Etiqueta miEtiqueta = Etiqueta(etiquetas[i]);
+                          miEnsayo1.agregarEtiqueta(miEtiqueta);
+                        }
+
                         controlleTitulo.text = "";
                         controlleCuerpo.text = "";
                         controlleEtiqueta.text = "";
