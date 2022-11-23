@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/controller/Usuario.dart';
-import 'package:soy_arquitecto/controller/UsuarioSuscrito.dart';
-import 'package:soy_arquitecto/view/IntComentario.dart';
+import 'package:soy_arquitecto/controller/usuario_suscrito.dart';
+import 'package:soy_arquitecto/view/int_comentario.dart';
 
-import '../../model/Datos.dart';
+import '../../model/datos.dart';
 
 class CapsulasContenido extends StatefulWidget {
-  UsuarioSuscrito usuario;
-  UsuarioSuscrito usuerLogin;
-  int index;
-  CapsulasContenido(
+  final UsuarioSuscrito usuario;
+  final UsuarioSuscrito usuerLogin;
+  final int index;
+  final Datos usuarios;
+  const CapsulasContenido(
       {Key? key,
       required this.usuario,
       required this.usuerLogin,
-      required this.index})
+      required this.index,
+      required this.usuarios})
       : super(key: key);
 
   @override
-  State<CapsulasContenido> createState() => _CapsulasContenidoState(
-      usuario: usuario, index: index, usuerLogin: usuerLogin);
+  State<CapsulasContenido> createState() => _CapsulasContenidoState();
 }
 
 class _CapsulasContenidoState extends State<CapsulasContenido> {
-  Datos datos = Datos();
-  UsuarioSuscrito usuerLogin;
-  UsuarioSuscrito usuario;
-  int index;
-  _CapsulasContenidoState(
-      {required this.usuario, required this.index, required this.usuerLogin});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,7 +40,7 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
               ),
             ),
             Text(
-              usuario.nombre,
+              widget.usuario.nombre,
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -54,18 +48,20 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
             ),
             TextButton(
                 onPressed: () {},
-                child: Text(usuario.misCapsulas[index].misEtiquetas.length != 0
-                    ? usuario.misCapsulas[index].misEtiquetas[0].nombre
+                child: Text(widget.usuario.misCapsulas[widget.index]
+                        .misEtiquetas.isNotEmpty
+                    ? widget.usuario.misCapsulas[widget.index].misEtiquetas[0]
+                        .nombre
                     : ""))
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SelectableText(usuario.misCapsulas[index].titulo,
+            SelectableText(widget.usuario.misCapsulas[widget.index].titulo,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SelectableText(usuario.misCapsulas[index].cuerpo),
+            SelectableText(widget.usuario.misCapsulas[widget.index].cuerpo),
           ],
         ),
         Row(
@@ -76,16 +72,18 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => IntComentario(
-                                userCapsula: usuario,
-                                userLogin: usuerLogin,
-                                index: index,
+                                userCapsula: widget.usuario,
+                                userLogin: widget.usuerLogin,
+                                index: widget.index,
+                                datos: widget.usuarios,
                               )));
                 },
                 icon: const Icon(Icons.message_rounded)),
-            const Text("40")
+            Text(widget.usuario.misCapsulas[widget.index].misComentarios.length
+                .toString())
           ],
         ),
-        Divider()
+        const Divider()
       ],
     );
   }

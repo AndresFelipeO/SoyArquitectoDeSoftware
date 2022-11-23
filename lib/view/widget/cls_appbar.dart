@@ -6,19 +6,17 @@ class ClsAppbar extends AppBar {
   ClsAppbar({Key? key, required this.prmTitulo}) : super(key: key);
 
   @override
-  State<ClsAppbar> createState() => _ClsAppbarState(prmTitulo: prmTitulo);
+  State<ClsAppbar> createState() => _ClsAppbarState();
 }
 
 class _ClsAppbarState extends State<ClsAppbar> {
-  String prmTitulo;
-  _ClsAppbarState({required this.prmTitulo});
   @override
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 5,
       flexibleSpace: Center(
           child: Text(
-        prmTitulo,
+        widget.prmTitulo,
         style: const TextStyle(
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
       )),

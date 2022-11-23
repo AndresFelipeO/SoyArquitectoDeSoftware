@@ -1,7 +1,6 @@
-import 'Usuario.dart';
-import 'UsuarioSuscrito.dart';
-import 'Comentario.dart';
-import 'Etiqueta.dart';
+import 'usuario_suscrito.dart';
+import 'comentario.dart';
+import 'etiqueta.dart';
 
 abstract class Capsulas {
   String titulo;

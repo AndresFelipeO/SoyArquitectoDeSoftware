@@ -1,7 +1,7 @@
-import 'Capsulas.dart';
-import 'UsuarioSuscrito.dart';
-import 'Comentario.dart';
-import 'Etiqueta.dart';
+import 'package:soy_arquitecto/controller/comentario.dart';
+import 'package:soy_arquitecto/controller/etiqueta.dart';
+import 'capsulas.dart';
+import 'usuario_suscrito.dart';
 
 class EnsayoCritico extends Capsulas {
   ///@brief Contructor parametrizado

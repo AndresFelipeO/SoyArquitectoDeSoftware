@@ -1,25 +1,24 @@
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/controller/Usuario.dart';
-import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
-import 'package:soy_arquitecto/view/widget/CapsulasContenido.dart';
-import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
-import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
+import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
+import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
 
-import '../controller/UsuarioSuscrito.dart';
+import '../controller/usuario_suscrito.dart';
+import '../model/datos.dart';
 
 class Perfil extends StatefulWidget {
-  UsuarioSuscrito usuario;
-  Perfil({Key? key, required this.usuario}) : super(key: key);
+  final UsuarioSuscrito usuario;
+  final Datos usuarios;
+  const Perfil({Key? key, required this.usuario, required this.usuarios})
+      : super(key: key);
 
   @override
-  State<Perfil> createState() => _PerfilState(usuario: usuario);
+  State<Perfil> createState() => _PerfilState();
 }
 
 class _PerfilState extends State<Perfil> {
-  UsuarioSuscrito usuario;
-  _PerfilState({required this.usuario});
-
   @override
   void initState() {
     super.initState();
@@ -48,7 +47,8 @@ class _PerfilState extends State<Perfil> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AccesoRapido(
-          usuario: usuario,
+          usuario: widget.usuario,
+          datos: widget.usuarios,
         ),
         const VerticalDivider(),
         contenido(),
@@ -65,10 +65,11 @@ class _PerfilState extends State<Perfil> {
           children: [
             Expanded(
                 child: ListView.builder(
-              itemCount: usuario.misCapsulas.length,
+              itemCount: widget.usuario.misCapsulas.length,
               itemBuilder: (context, index) => CapsulasContenido(
-                usuerLogin: usuario,
-                usuario: usuario,
+                usuarios: widget.usuarios,
+                usuerLogin: widget.usuario,
+                usuario: widget.usuario,
                 index: index,
               ),
             ))

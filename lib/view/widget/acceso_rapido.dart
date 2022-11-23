@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:soy_arquitecto/view/Edicion.dart';
+import 'package:soy_arquitecto/model/datos.dart';
+import 'package:soy_arquitecto/view/edicion.dart';
 import 'package:soy_arquitecto/view/Inicio.dart';
-import 'package:soy_arquitecto/view/Perfil.dart';
-
-import '../../controller/UsuarioSuscrito.dart';
+import 'package:soy_arquitecto/view/perfil.dart';
+import '../../controller/usuario_suscrito.dart';
 
 class AccesoRapido extends StatelessWidget {
-  UsuarioSuscrito usuario;
-  AccesoRapido({Key? key, required this.usuario}) : super(key: key);
+  final UsuarioSuscrito usuario;
+  final Datos datos;
+  const AccesoRapido({Key? key, required this.usuario, required this.datos})
+      : super(key: key);
 
   /// @brief Contiene la interfaz grafica del acceso rapido
   @override
@@ -32,7 +32,8 @@ class AccesoRapido extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => Inicio(
-                          usuario: usuario,
+                          usuarioLogin: usuario,
+                          usuarios: datos,
                         )));
           },
         ),
@@ -52,11 +53,12 @@ class AccesoRapido extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => Perfil(
+                          usuarios: datos,
                           usuario: usuario,
                         )));
           },
         ),
-        Text(" "),
+        const Text(" "),
         ElevatedButton(
           onPressed: () {
             Navigator.push(
@@ -64,6 +66,7 @@ class AccesoRapido extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => Edicion(
                           usuario: usuario,
+                          usuarios: datos,
                         )));
           },
           style: ButtonStyle(

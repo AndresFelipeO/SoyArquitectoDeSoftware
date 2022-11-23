@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/controller/Capsulas.dart';
-import 'package:soy_arquitecto/controller/EnsayoCritico.dart';
-import 'package:soy_arquitecto/controller/Etiqueta.dart';
-import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
-import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
-import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
-import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
+import 'package:soy_arquitecto/controller/capsulas.dart';
+import 'package:soy_arquitecto/controller/ensayo_critico.dart';
+import 'package:soy_arquitecto/controller/etiqueta.dart';
+import 'package:soy_arquitecto/model/datos.dart';
+import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
+import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
 import 'package:desktop_window/desktop_window.dart';
-import '../controller/Usuario.dart';
-import '../controller/UsuarioSuscrito.dart';
+import '../controller/usuario_suscrito.dart';
 import 'Inicio.dart';
 
 class Edicion extends StatefulWidget {
-  UsuarioSuscrito usuario;
-  Edicion({Key? key, required this.usuario}) : super(key: key);
+  final UsuarioSuscrito usuario;
+  final Datos usuarios;
+  const Edicion({Key? key, required this.usuario, required this.usuarios})
+      : super(key: key);
 
   @override
-  State<Edicion> createState() => _EdicionState(usuario: usuario);
+  State<Edicion> createState() => _EdicionState();
 }
 
 class _EdicionState extends State<Edicion> {
   final controlleTitulo = TextEditingController();
   final controlleCuerpo = TextEditingController();
   final controlleEtiqueta = TextEditingController();
-  UsuarioSuscrito usuario;
-  _EdicionState({required this.usuario});
+
   @override
   void initState() {
     super.initState();
@@ -52,7 +53,8 @@ class _EdicionState extends State<Edicion> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AccesoRapido(
-            usuario: usuario,
+            usuario: widget.usuario,
+            datos: widget.usuarios,
           ),
           const VerticalDivider(),
           edicionContenido(),
@@ -67,8 +69,7 @@ class _EdicionState extends State<Edicion> {
               top: 15,
               bottom: 15,
             ),
-            child: Expanded(
-                child: ListView(
+            child: ListView(
               children: [
                 Row(
                   children: [
@@ -78,7 +79,8 @@ class _EdicionState extends State<Edicion> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => Inicio(
-                                        usuario: usuario,
+                                        usuarioLogin: widget.usuario,
+                                        usuarios: widget.usuarios,
                                       )));
                         },
                         icon: const Icon(Icons.arrow_back)),
@@ -134,7 +136,7 @@ class _EdicionState extends State<Edicion> {
                       setState(() {
                         Capsulas miEnsayo1 = EnsayoCritico(
                             controlleTitulo.text, controlleCuerpo.text);
-                        miEnsayo1.publicar(usuario);
+                        miEnsayo1.publicar(widget.usuario);
 
                         Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text);
                         miEnsayo1.agregarEtiqueta(miEtiqueta);
@@ -151,6 +153,6 @@ class _EdicionState extends State<Edicion> {
                   ),
                 ),
               ],
-            ))),
+            )),
       );
 }

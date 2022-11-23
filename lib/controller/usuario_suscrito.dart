@@ -1,7 +1,6 @@
-import 'package:soy_arquitecto/controller/Capsulas.dart';
-import 'package:soy_arquitecto/controller/EnsayoCritico.dart';
+import 'package:soy_arquitecto/controller/capsulas.dart';
 
-import 'Usuario.dart';
+import 'usuario.dart';
 
 class UsuarioSuscrito extends Usuario {
   List<Capsulas> misCapsulas = [];

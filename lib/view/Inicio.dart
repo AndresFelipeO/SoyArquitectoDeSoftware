@@ -1,30 +1,28 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/model/Datos.dart';
-import 'package:soy_arquitecto/view/Edicion.dart';
-import 'package:soy_arquitecto/view/widget/CapsulasContenido.dart';
-import 'package:soy_arquitecto/view/widget/ClsAppbar.dart';
-import 'package:soy_arquitecto/view/widget/AccesoRapido.dart';
-import 'package:soy_arquitecto/view/widget/ClsAvatar.dart';
-import 'package:soy_arquitecto/view/widget/ClsDrawer.dart';
+import 'package:soy_arquitecto/model/datos.dart';
+import 'package:soy_arquitecto/view/edicion.dart';
+import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
+import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
+import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
 import 'package:desktop_window/desktop_window.dart';
-import '../controller/UsuarioSuscrito.dart';
+import '../controller/usuario_suscrito.dart';
 
 class Inicio extends StatefulWidget {
-  UsuarioSuscrito usuario;
-  Inicio({Key? key, required this.usuario}) : super(key: key);
+  final UsuarioSuscrito usuarioLogin;
+  final Datos usuarios;
+  const Inicio({Key? key, required this.usuarioLogin, required this.usuarios})
+      : super(key: key);
 
   @override
-  State<Inicio> createState() => _InicioState(usuario: usuario);
+  State<Inicio> createState() => _InicioState();
 }
 
 class _InicioState extends State<Inicio> {
-  Datos datos = Datos();
   //cambia el color del IconButton
   bool colorFavorito = false;
-  UsuarioSuscrito usuario;
-  _InicioState({required this.usuario});
   @override
   void initState() {
     super.initState();
@@ -54,7 +52,8 @@ class _InicioState extends State<Inicio> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AccesoRapido(
-          usuario: usuario,
+          usuario: widget.usuarioLogin,
+          datos: widget.usuarios,
         ),
         const VerticalDivider(),
         contenido(),
@@ -82,7 +81,7 @@ class _InicioState extends State<Inicio> {
           margin: const EdgeInsets.only(top: 10, left: 5),
           child: Row(
             children: [
-              ClsAvatar(),
+              const ClsAvatar(),
               Container(
                   margin: const EdgeInsets.only(top: 0, left: 30),
                   height: 100,
@@ -95,7 +94,8 @@ class _InicioState extends State<Inicio> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Edicion(
-                                      usuario: usuario,
+                                      usuario: widget.usuarioLogin,
+                                      usuarios: widget.usuarios,
                                     )));
                       },
                       textCapitalization: TextCapitalization.sentences,
@@ -108,7 +108,8 @@ class _InicioState extends State<Inicio> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => Edicion(
-                                    usuario: usuario,
+                                    usuario: widget.usuarioLogin,
+                                    usuarios: widget.usuarios,
                                   )));
                     },
                   ))
@@ -127,7 +128,8 @@ class _InicioState extends State<Inicio> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => Edicion(
-                                usuario: usuario,
+                                usuario: widget.usuarioLogin,
+                                usuarios: widget.usuarios,
                               )));
                 },
                 style: ButtonStyle(
@@ -149,12 +151,13 @@ class _InicioState extends State<Inicio> {
     Random random = Random();
     return Expanded(
         child: ListView.builder(
-      itemCount: datos.usuariosPrueba.length,
+      itemCount: widget.usuarios.usuariosPrueba.length,
       itemBuilder: ((context, index) => CapsulasContenido(
-            usuerLogin: usuario,
-            usuario: datos.usuariosPrueba[index],
-            index:
-                random.nextInt(datos.usuariosPrueba[index].misCapsulas.length),
+            usuarios: widget.usuarios,
+            usuerLogin: widget.usuarioLogin,
+            usuario: widget.usuarios.usuariosPrueba[index],
+            index: random.nextInt(
+                widget.usuarios.usuariosPrueba[index].misCapsulas.length),
           )),
     ));
   }
