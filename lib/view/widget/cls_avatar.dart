@@ -5,7 +5,7 @@ class ClsAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: Colors.deepPurple[200],
+      backgroundColor: Color.fromARGB(255, 58, 101, 182),
       maxRadius: 30,
       child: const Text(
         "A",

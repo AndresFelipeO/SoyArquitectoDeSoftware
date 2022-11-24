@@ -14,17 +14,19 @@ class _ClsAppbarState extends State<ClsAppbar> {
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 5,
-      flexibleSpace: Center(
-          child: Text(
-        widget.prmTitulo,
-        style: const TextStyle(
-            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+      centerTitle: true,
+      flexibleSpace: Container(
+          decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+            colors: [
+              Color.fromARGB(255, 102, 25, 78),
+              Color.fromARGB(255, 49, 110, 179),
+              Color.fromARGB(255, 48, 28, 119),
+            ]),
       )),
-      centerTitle: false,
-      backgroundColor: Colors.black,
-      title: const Icon(
-        Icons.computer_rounded,
-      ),
+      title: Text(widget.prmTitulo),
       actions: const [
         //crea y acomoda el buscador del appbar
         Center(

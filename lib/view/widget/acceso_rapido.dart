@@ -21,10 +21,11 @@ class AccesoRapido extends StatelessWidget {
             Icon(
               Icons.home,
               size: 40,
+              color: Color.fromARGB(255, 38, 12, 82),
             ),
             Text(
               "Inicio",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 38, 12, 82)),
             )
           ]),
           onTap: () {
@@ -42,10 +43,11 @@ class AccesoRapido extends StatelessWidget {
             Icon(
               Icons.people_outline_outlined,
               size: 40,
+              color: Color.fromARGB(255, 38, 12, 82),
             ),
             Text(
               "Perfil",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 38, 12, 82)),
             )
           ]),
           onTap: () {
@@ -70,7 +72,7 @@ class AccesoRapido extends StatelessWidget {
                         )));
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            backgroundColor: MaterialStateProperty.all<Color>( const Color.fromARGB(255, 38, 12, 82)),
           ),
           child: const Text("Agregar Publicación"),
         ),

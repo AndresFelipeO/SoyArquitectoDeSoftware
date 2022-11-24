@@ -134,7 +134,7 @@ class _InicioState extends State<Inicio> {
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.black),
+                      MaterialStateProperty.all<Color>(const Color.fromARGB(255, 38, 12, 82)),
                 ),
                 child: const Text("Publicar"),
               )

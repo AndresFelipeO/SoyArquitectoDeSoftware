@@ -67,6 +67,7 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
         Row(
           children: [
             IconButton(
+              color: const Color.fromARGB(255, 38, 12, 82),
                 onPressed: () {
                   Navigator.push(
                       context,

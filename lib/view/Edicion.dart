@@ -41,7 +41,7 @@ class _EdicionState extends State<Edicion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ClsAppbar(
-        prmTitulo: 'Edicion',
+        prmTitulo: 'Edición',
       ),
       drawer: const ClsDrawer(),
       body: body(),
@@ -123,7 +123,7 @@ class _EdicionState extends State<Edicion> {
                     textCapitalization: TextCapitalization.sentences,
                     maxLines: 10,
                     decoration:
-                        const InputDecoration(labelText: "Agregar Etiquetas #"),
+                        const InputDecoration(labelText: "Agregar Etiqueta #"),
                   ),
                 ),
                 Container(
@@ -147,7 +147,7 @@ class _EdicionState extends State<Edicion> {
                     },
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
+                          MaterialStateProperty.all<Color>(const Color.fromARGB(255, 38, 12, 82)),
                     ),
                     child: const Text("Publicar"),
                   ),

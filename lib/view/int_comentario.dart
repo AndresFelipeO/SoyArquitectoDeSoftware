@@ -172,7 +172,7 @@ class _IntComentarioState extends State<IntComentario> {
               });
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 38, 12, 82)),
             ),
             child: const Text("Publicar"),
           ),
