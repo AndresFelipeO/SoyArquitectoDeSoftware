@@ -37,6 +37,7 @@ class _ClsAppbarState extends State<ClsAppbar> {
             child: TextField(
               style: TextStyle(fontSize: 15, color: Colors.black),
               decoration: InputDecoration(
+                  labelText: "TODO:Buscador",
                   contentPadding:
                       EdgeInsets.only(bottom: 5, top: 5, left: 5, right: 10),
                   filled: true,

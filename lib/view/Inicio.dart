@@ -67,10 +67,9 @@ class _InicioState extends State<Inicio> {
   /// @note mustra las capsulas de conocimiento y permite agregar una publicacion rapida
   Widget contenido() {
     return SizedBox(
-        width: 600,
-        child: Column(
-          children: [publicacionRapida(), capsulasContenido()],
-        ));
+      width: 600,
+      child: contenidoPublicaciones(),
+    );
   }
 
   /// @brief Contiene la interfaz grafica de una publicacion rapida
@@ -133,8 +132,8 @@ class _InicioState extends State<Inicio> {
                               )));
                 },
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color.fromARGB(255, 38, 12, 82)),
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 38, 12, 82)),
                 ),
                 child: const Text("Publicar"),
               )
@@ -147,18 +146,34 @@ class _InicioState extends State<Inicio> {
   }
 
   /// @brief Contiene la interfaz grafica de las capsulas de conocimiento
-  Widget capsulasContenido() {
+  Widget contenidoPublicaciones() {
     Random random = Random();
-    return Expanded(
-        child: ListView.builder(
+    return ListView.builder(
       itemCount: widget.usuarios.usuariosPrueba.length,
-      itemBuilder: ((context, index) => CapsulasContenido(
+      itemBuilder: ((context, index) {
+        if (index == 0) return cuerpo(index, random);
+        return CapsulasContenido(
+          usuarios: widget.usuarios,
+          usuerLogin: widget.usuarioLogin,
+          usuario: widget.usuarios.usuariosPrueba[index],
+          index: random.nextInt(
+              widget.usuarios.usuariosPrueba[index].misCapsulas.length),
+        );
+      }),
+    );
+  }
+
+  /// @brief Coloca las plicaciones rapidas de primero y solo las muestra una vez
+  Widget cuerpo(int index, Random random) => Column(
+        children: [
+          publicacionRapida(),
+          CapsulasContenido(
             usuarios: widget.usuarios,
             usuerLogin: widget.usuarioLogin,
             usuario: widget.usuarios.usuariosPrueba[index],
             index: random.nextInt(
                 widget.usuarios.usuariosPrueba[index].misCapsulas.length),
-          )),
-    ));
-  }
+          )
+        ],
+      );
 }

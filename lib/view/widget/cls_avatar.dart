@@ -4,10 +4,10 @@ class ClsAvatar extends StatelessWidget {
   const ClsAvatar({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
+    return const CircleAvatar(
       backgroundColor: Color.fromARGB(255, 58, 101, 182),
       maxRadius: 30,
-      child: const Text(
+      child: Text(
         "A",
         style: TextStyle(color: Colors.white),
       ),
