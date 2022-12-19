@@ -41,7 +41,7 @@ class _EdicionState extends State<Edicion> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ClsAppbar(
-        prmTitulo: 'Edición',
+        prmTitulo: 'Agregar Publicación',
       ),
       drawer: const ClsDrawer(),
       body: body(),
@@ -146,8 +146,8 @@ class _EdicionState extends State<Edicion> {
                       });
                     },
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(const Color.fromARGB(255, 38, 12, 82)),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 38, 12, 82)),
                     ),
                     child: const Text("Publicar"),
                   ),
