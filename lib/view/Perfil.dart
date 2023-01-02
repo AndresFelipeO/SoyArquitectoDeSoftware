@@ -1,4 +1,3 @@
-import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
 import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
@@ -19,17 +18,6 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
-  @override
-  void initState() {
-    super.initState();
-    testWindowSize();
-  }
-
-  /// @brief metodo asincrono donde se predefine el tamaño minimo de la ventana de la aplicacion
-  testWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(1280, 720));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

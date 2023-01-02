@@ -7,9 +7,9 @@ import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
 import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
 import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
 import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
-import 'package:desktop_window/desktop_window.dart';
 import '../controller/usuario_suscrito.dart';
 import 'Inicio.dart';
+import 'Perfil.dart';
 
 class Edicion extends StatefulWidget {
   final UsuarioSuscrito usuario;
@@ -25,17 +25,6 @@ class _EdicionState extends State<Edicion> {
   final controlleTitulo = TextEditingController();
   final controlleCuerpo = TextEditingController();
   final controlleEtiqueta = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    testWindowSize();
-  }
-
-  /// @brief metodo asincrono donde se predefine el tamaño minimo de la ventana de la aplicacion.
-  testWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(1280, 720));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +51,27 @@ class _EdicionState extends State<Edicion> {
           const Text("TODO: sugerencias")
         ],
       );
+
+  void showSnackBarAlerta(String text, String ans) {
+    final snackBar = SnackBar(
+      elevation: 10,
+      content: Text(text),
+      action: SnackBarAction(
+        label: ans,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Perfil(
+                        usuarios: widget.usuarios,
+                        usuario: widget.usuario,
+                      )));
+        },
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Widget edicionContenido() => SizedBox(
         width: 600,
         child: Container(
@@ -133,17 +143,25 @@ class _EdicionState extends State<Edicion> {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        Capsulas miEnsayo1 = EnsayoCritico(
-                            controlleTitulo.text, controlleCuerpo.text);
-                        miEnsayo1.publicar(widget.usuario);
-
-                        Etiqueta miEtiqueta = Etiqueta(controlleEtiqueta.text);
-                        miEnsayo1.agregarEtiqueta(miEtiqueta);
-                        controlleTitulo.text = "";
-                        controlleCuerpo.text = "";
-                        controlleEtiqueta.text = "";
-                      });
+                      if (controlleTitulo.text != "" &&
+                          controlleCuerpo.text != "" &&
+                          controlleEtiqueta.text != "") {
+                        setState(() {
+                          Capsulas miEnsayo1 = EnsayoCritico(
+                              controlleTitulo.text, controlleCuerpo.text);
+                          miEnsayo1.publicar(widget.usuario);
+                          Etiqueta miEtiqueta =
+                              Etiqueta(controlleEtiqueta.text);
+                          miEnsayo1.agregarEtiqueta(miEtiqueta);
+                          controlleTitulo.text = "";
+                          controlleCuerpo.text = "";
+                          controlleEtiqueta.text = "";
+                        });
+                        showSnackBarAlerta("Publicación agregada", "ver");
+                        return;
+                      }
+                      showSnackBarAlerta(
+                          "Error! no se pudo agregar la publicación", "");
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(

@@ -25,15 +25,6 @@ class IntComentario extends StatefulWidget {
 
 class _IntComentarioState extends State<IntComentario> {
   final controlleComentario = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    testWindowSize();
-  }
-
-  testWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(1280, 720));
-  }
 
   @override
   Widget build(BuildContext context) {

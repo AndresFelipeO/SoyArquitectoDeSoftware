@@ -7,7 +7,6 @@ import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
 import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
 import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
 import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
-import 'package:desktop_window/desktop_window.dart';
 import '../controller/usuario_suscrito.dart';
 
 class Inicio extends StatefulWidget {
@@ -23,16 +22,6 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   //cambia el color del IconButton
   bool colorFavorito = false;
-  @override
-  void initState() {
-    super.initState();
-    testWindowSize();
-  }
-
-  /// @brief metodo asincrono donde se predefine el tamaño minimo de la ventana de la aplicacion
-  testWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(1280, 720));
-  }
 
   @override
   Widget build(BuildContext context) {
