@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/controller/usuario_suscrito.dart';
 import 'package:soy_arquitecto/view/int_comentario.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import '../../model/datos.dart';
 
@@ -61,13 +62,15 @@ class _CapsulasContenidoState extends State<CapsulasContenido> {
             SelectableText(widget.usuario.misCapsulas[widget.index].titulo,
                 style:
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SelectableText(widget.usuario.misCapsulas[widget.index].cuerpo),
+            Html(
+              data: widget.usuario.misCapsulas[widget.index].cuerpo,
+            )
           ],
         ),
         Row(
           children: [
             IconButton(
-              color: const Color.fromARGB(255, 38, 12, 82),
+                color: const Color.fromARGB(255, 38, 12, 82),
                 onPressed: () {
                   Navigator.push(
                       context,

@@ -174,10 +174,12 @@ class _IntComentarioState extends State<IntComentario> {
           ElevatedButton(
             onPressed: () {
               setState(() {
-                widget.userCapsula.misCapsulas[widget.index].agregarComentario(
-                    Comentario(
-                        widget.userLogin.nombre, controlleComentario.text));
-                controlleComentario.text = "";
+                if (controlleComentario.text != "") {
+                  widget.userCapsula.misCapsulas[widget.index]
+                      .agregarComentario(Comentario(
+                          widget.userLogin.nombre, controlleComentario.text));
+                  controlleComentario.text = "";
+                }
               });
             },
             style: ButtonStyle(

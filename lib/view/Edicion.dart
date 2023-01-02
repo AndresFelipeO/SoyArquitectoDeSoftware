@@ -10,6 +10,7 @@ import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
 import '../controller/usuario_suscrito.dart';
 import 'Inicio.dart';
 import 'Perfil.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 
 class Edicion extends StatefulWidget {
   final UsuarioSuscrito usuario;
@@ -23,8 +24,8 @@ class Edicion extends StatefulWidget {
 
 class _EdicionState extends State<Edicion> {
   final controlleTitulo = TextEditingController();
-  final controlleCuerpo = TextEditingController();
   final controlleEtiqueta = TextEditingController();
+  final HtmlEditorController controllerHtml = HtmlEditorController();
 
   @override
   Widget build(BuildContext context) {
@@ -114,14 +115,16 @@ class _EdicionState extends State<Edicion> {
                     top: 15,
                     bottom: 15,
                   ),
-                  child: TextField(
-                    controller: controlleCuerpo,
-                    onTap: () {},
-                    textCapitalization: TextCapitalization.sentences,
-                    maxLines: 15,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(borderSide: BorderSide.none),
-                      labelText: "Que deseas compartir",
+                  child: HtmlEditor(
+                    htmlToolbarOptions: const HtmlToolbarOptions(
+                      toolbarType: ToolbarType.nativeGrid,
+                    ),
+                    controller: controllerHtml, //required
+                    htmlEditorOptions: const HtmlEditorOptions(
+                      hint: "Agregar contenido",
+                      shouldEnsureVisible: true,
+
+                      //initalText: "text content initial, if any",
                     ),
                   ),
                 ),
@@ -144,18 +147,18 @@ class _EdicionState extends State<Edicion> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (controlleTitulo.text != "" &&
-                          controlleCuerpo.text != "" &&
                           controlleEtiqueta.text != "") {
-                        setState(() {
-                          Capsulas miEnsayo1 = EnsayoCritico(
-                              controlleTitulo.text, controlleCuerpo.text);
+                        setState(() async {
+                          String? cuerpo = await controllerHtml.getText();
+                          Capsulas miEnsayo1 =
+                              EnsayoCritico(controlleTitulo.text, cuerpo);
                           miEnsayo1.publicar(widget.usuario);
                           Etiqueta miEtiqueta =
                               Etiqueta(controlleEtiqueta.text);
                           miEnsayo1.agregarEtiqueta(miEtiqueta);
                           controlleTitulo.text = "";
-                          controlleCuerpo.text = "";
                           controlleEtiqueta.text = "";
+                          controllerHtml.setText("");
                         });
                         showSnackBarAlerta("Publicación agregada", "ver");
                         return;
