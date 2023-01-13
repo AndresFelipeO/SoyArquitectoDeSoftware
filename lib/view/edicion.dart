@@ -8,8 +8,8 @@ import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
 import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
 import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
 import '../controller/usuario_suscrito.dart';
-import 'Inicio.dart';
-import 'Perfil.dart';
+import 'inicio.dart';
+import 'perfil.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 
 class Edicion extends StatefulWidget {
@@ -55,10 +55,12 @@ class _EdicionState extends State<Edicion> {
 
   void showSnackBarAlerta(String text, String ans) {
     final snackBar = SnackBar(
+      backgroundColor: Colors.deepPurpleAccent[200],
       elevation: 10,
       content: Text(text),
       action: SnackBarAction(
         label: ans,
+        textColor: Colors.white,
         onPressed: () {
           Navigator.push(
               context,
@@ -159,8 +161,9 @@ class _EdicionState extends State<Edicion> {
                           controlleTitulo.text = "";
                           controlleEtiqueta.text = "";
                           controllerHtml.setText("");
+                          showSnackBarAlerta("Publicación agregada", "ver");
                         });
-                        showSnackBarAlerta("Publicación agregada", "ver");
+
                         return;
                       }
                       showSnackBarAlerta(

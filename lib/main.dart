@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/controller/usuario_suscrito.dart';
 import 'package:soy_arquitecto/model/datos.dart';
-import 'package:soy_arquitecto/view/Inicio.dart';
+import 'package:soy_arquitecto/view/inicio.dart';
 
 void main(List<String> args) {
   Datos userHot = Datos();

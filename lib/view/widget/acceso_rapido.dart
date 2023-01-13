@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soy_arquitecto/model/datos.dart';
 import 'package:soy_arquitecto/view/edicion.dart';
-import 'package:soy_arquitecto/view/Inicio.dart';
+import 'package:soy_arquitecto/view/inicio.dart';
 import 'package:soy_arquitecto/view/perfil.dart';
 import '../../controller/usuario_suscrito.dart';
 
