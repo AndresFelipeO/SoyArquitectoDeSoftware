@@ -1,5 +1,5 @@
-import 'package:soy_arquitecto/controller/comentario.dart';
-import 'package:soy_arquitecto/controller/etiqueta.dart';
+import 'package:soy_arquitecto/domain/comentario.dart';
+import 'package:soy_arquitecto/domain/etiqueta.dart';
 import 'capsulas.dart';
 import 'usuario_suscrito.dart';
 

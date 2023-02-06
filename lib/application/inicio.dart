@@ -1,13 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/model/datos.dart';
-import 'package:soy_arquitecto/view/edicion.dart';
-import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
-import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
-import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
-import 'package:soy_arquitecto/view/widget/cls_avatar.dart';
-import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
-import '../controller/usuario_suscrito.dart';
+import 'package:soy_arquitecto/infrastructure/datos.dart';
+import 'package:soy_arquitecto/application/edicion.dart';
+import 'package:soy_arquitecto/application/widget/capsulas_contenido.dart';
+import 'package:soy_arquitecto/application/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/application/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/application/widget/cls_avatar.dart';
+import 'package:soy_arquitecto/application/widget/cls_drawer.dart';
+import '../domain/usuario_suscrito.dart';
 
 class Inicio extends StatefulWidget {
   final UsuarioSuscrito usuarioLogin;
@@ -138,15 +138,15 @@ class _InicioState extends State<Inicio> {
   Widget contenidoPublicaciones() {
     Random random = Random();
     return ListView.builder(
-      itemCount: widget.usuarios.usuariosPrueba.length,
+      itemCount: widget.usuarios.usuariosSuscritos.length,
       itemBuilder: ((context, index) {
         if (index == 0) return cuerpo(index, random);
         return CapsulasContenido(
           usuarios: widget.usuarios,
           usuerLogin: widget.usuarioLogin,
-          usuario: widget.usuarios.usuariosPrueba[index],
+          usuario: widget.usuarios.usuariosSuscritos[index],
           index: random.nextInt(
-              widget.usuarios.usuariosPrueba[index].misCapsulas.length),
+              widget.usuarios.usuariosSuscritos[index].misCapsulas.length),
         );
       }),
     );
@@ -159,9 +159,9 @@ class _InicioState extends State<Inicio> {
           CapsulasContenido(
             usuarios: widget.usuarios,
             usuerLogin: widget.usuarioLogin,
-            usuario: widget.usuarios.usuariosPrueba[index],
+            usuario: widget.usuarios.usuariosSuscritos[index],
             index: random.nextInt(
-                widget.usuarios.usuariosPrueba[index].misCapsulas.length),
+                widget.usuarios.usuariosSuscritos[index].misCapsulas.length),
           )
         ],
       );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/controller/usuario_suscrito.dart';
-import 'package:soy_arquitecto/view/int_comentario.dart';
+import 'package:soy_arquitecto/domain/usuario_suscrito.dart';
+import 'package:soy_arquitecto/application/int_comentario.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-import '../../model/datos.dart';
+import '../../infrastructure/datos.dart';
 
 class CapsulasContenido extends StatefulWidget {
   final UsuarioSuscrito usuario;

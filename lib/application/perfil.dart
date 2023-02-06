@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
-import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
-import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
-import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
+import 'package:soy_arquitecto/application/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/application/widget/capsulas_contenido.dart';
+import 'package:soy_arquitecto/application/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/application/widget/cls_drawer.dart';
 
-import '../controller/usuario_suscrito.dart';
-import '../model/datos.dart';
+import '../domain/usuario_suscrito.dart';
+import '../infrastructure/datos.dart';
 
 class Perfil extends StatefulWidget {
   final UsuarioSuscrito usuario;

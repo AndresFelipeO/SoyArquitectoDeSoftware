@@ -1,12 +1,11 @@
-import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/controller/usuario_suscrito.dart';
-import 'package:soy_arquitecto/view/widget/acceso_rapido.dart';
-import 'package:soy_arquitecto/view/widget/capsulas_contenido.dart';
-import 'package:soy_arquitecto/view/widget/cls_appbar.dart';
-import 'package:soy_arquitecto/view/widget/cls_drawer.dart';
-import '../controller/comentario.dart';
-import '../model/datos.dart';
+import 'package:soy_arquitecto/domain/usuario_suscrito.dart';
+import 'package:soy_arquitecto/application/widget/acceso_rapido.dart';
+import 'package:soy_arquitecto/application/widget/capsulas_contenido.dart';
+import 'package:soy_arquitecto/application/widget/cls_appbar.dart';
+import 'package:soy_arquitecto/application/widget/cls_drawer.dart';
+import '../domain/comentario.dart';
+import '../infrastructure/datos.dart';
 
 class IntComentario extends StatefulWidget {
   final UsuarioSuscrito userCapsula;

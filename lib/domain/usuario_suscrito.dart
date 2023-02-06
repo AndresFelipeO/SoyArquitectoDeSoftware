@@ -1,4 +1,4 @@
-import 'package:soy_arquitecto/controller/capsulas.dart';
+import 'package:soy_arquitecto/domain/capsulas.dart';
 
 import 'usuario.dart';
 

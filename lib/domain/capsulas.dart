@@ -24,7 +24,7 @@ abstract class Capsulas {
   ///@brief modificar la capsula de conocimiento
   void editarCapsula();
 
-  ///@brief agregar la etiquea a capsula de conocimiento
+  ///@brief agregar una etiquea a capsula de conocimiento
   void agregarEtiqueta(Etiqueta prmEtiqueta);
 
   ///@brief agregar comentario a la capsula de conocimiento

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:soy_arquitecto/model/datos.dart';
-import 'package:soy_arquitecto/view/edicion.dart';
-import 'package:soy_arquitecto/view/inicio.dart';
-import 'package:soy_arquitecto/view/perfil.dart';
-import '../../controller/usuario_suscrito.dart';
+import 'package:soy_arquitecto/infrastructure/datos.dart';
+import 'package:soy_arquitecto/application/edicion.dart';
+import 'package:soy_arquitecto/application/inicio.dart';
+import 'package:soy_arquitecto/application/perfil.dart';
+import '../../domain/usuario_suscrito.dart';
 
 class AccesoRapido extends StatelessWidget {
   final UsuarioSuscrito usuario;
@@ -25,7 +25,10 @@ class AccesoRapido extends StatelessWidget {
             ),
             Text(
               "Inicio",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 38, 12, 82)),
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 38, 12, 82)),
             )
           ]),
           onTap: () {
@@ -47,7 +50,10 @@ class AccesoRapido extends StatelessWidget {
             ),
             Text(
               "Perfil",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 38, 12, 82)),
+              style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 38, 12, 82)),
             )
           ]),
           onTap: () {
@@ -72,7 +78,8 @@ class AccesoRapido extends StatelessWidget {
                         )));
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>( const Color.fromARGB(255, 38, 12, 82)),
+            backgroundColor: MaterialStateProperty.all<Color>(
+                const Color.fromARGB(255, 38, 12, 82)),
           ),
           child: const Text("Agregar Publicación"),
         ),
